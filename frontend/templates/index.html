@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phishing URL Detector</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body data-state="idle">
+  <main class="hero">
+    <section class="intro">
+      <h1>Enter URL<br>to verify</h1>
+      <div class="accent"></div>
+      <p class="subtitle">Automated feature extraction and classification of phishing URLs.</p>
+
+      <form id="url-form" class="url-form" novalidate>
+        <label class="sr-only" for="url-input">URL to check</label>
+        <input id="url-input" class="url-input" type="text" autocomplete="off" spellcheck="false"
+               placeholder="paypal.com/login/verify">
+        <p id="form-error" class="form-error" role="alert" hidden></p>
+        <button id="submit-btn" class="btn" type="submit">Detect phishing</button>
+      </form>
+
+      <div class="examples">
+        <span>Try an example:</span>
+        <button type="button" class="chip" data-url="youtube.com/watch?v=qI0TQJI3vdU">youtube.com/watch</button>
+        <button type="button" class="chip" data-url="yeniik.com.tr/wp-admin/js/login.alibaba.com/login.jsp.php">login.alibaba.com/login.jsp.php</button>
+      </div>
+
+      <section id="result" class="result" aria-live="polite" hidden>
+        <h2 id="verdict"></h2>
+        <p id="verdict-note"></p>
+        <div class="meter"><span id="meter-fill"></span></div>
+        <dl class="details">
+          <dt>Risk score</dt><dd id="score"></dd>
+          <dt>Cleaned input</dt><dd id="cleaned"></dd>
+          <dt>Model tokens</dt><dd id="tokens" class="tokens"></dd>
+        </dl>
+      </section>
+    </section>
+
+    <section class="visual" aria-hidden="true">
+      <div class="window">
+        <div class="window-inner">
+          <div class="window-bar"><i></i><i></i><i></i><span id="address" class="address">your-url-here</span></div>
+          <svg class="shield" viewBox="0 0 200 230">
+            <defs>
+              <linearGradient id="shield-fill" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#7cc0ff"/><stop offset="1" stop-color="#2468e8"/>
+              </linearGradient>
+            </defs>
+            <path d="M100 8 188 40v68c0 58-38 96-88 114C50 204 12 166 12 108V40z" fill="url(#shield-fill)"/>
+            <path class="check" d="M58 112l30 30 56-62" fill="none" stroke="#fff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+            <path class="cross" d="M70 85l60 60M130 85l-60 60" fill="none" stroke="#fff" stroke-width="18" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</body>
+</html>
