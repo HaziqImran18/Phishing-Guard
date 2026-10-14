@@ -1,3 +1,12 @@
+---
+title: Phishing URL Detector
+emoji: 🛡️
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+---
+
 # Phishing-Guard
 # Phishing URL Detector
 
